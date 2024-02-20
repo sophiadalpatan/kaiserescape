@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Kaiser Escape</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://i.imgur.com/SK07rU5.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        html {
+            scroll-behavior: smooth !important;
+        }
+
+        body {
+            margin: 0px;
+            color: rgb(26, 24, 24);
+            font-size: 18px;
+            font-family: "Poppins";
+        }
+
+        .topnav {
+            position: fixed;
+            width: 100%;
+            z-index: 1;
+            background-color: rgb(255, 255, 255);
+            overflow: hidden;
+        }
+
+        .topnav a {
+            width: 20%;
+            float: left;
+            display: block;
+            color: #1f1d1d;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: rgb(80, 73, 73);
+            text-align: center;
+        }
+
+        .topnav .icon {
+            text-align: center;
+            display: none;
+        }
+
+        section {
+            width: 100%;
+            height: 100vh;
+            float: left;
+            overflow: hidden;
+
+        }
+
+        #home {
+            background-image: url(https://i.imgur.com/7DfPliW.png);
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #plot {
+            background-image: url(https://i.imgur.com/ab4C1af.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            /*padding: 5%;*/
+            height: 100vh;
+            overflow: hidden;
+
+        }
+
+        #chara {
+            background-image: url(https://i.imgur.com/5hZ8Rrl.jpg);
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #project {
+            background-image: url(https://i.imgur.com/vdQn8vH.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+
+        }
+
+        #credits {
+            background-image: url(https://i.imgur.com/8j8tmih.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-image: url(https://i.imgur.com/6Ojabuj.png);
+            background-repeat: no-repeat;
+            width: 350px;
+            height: 100px;
+            opacity: 1;
+        }
+
+        .parallax img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            pointer-events: none;
+            height: 100vh;
+        }
+
+        .description {
+            float: left;
+            width: 40%;
+            top: 100px;
+            left: 100px;
+            height: auto;
+            padding: 2%;
+            margin-left: 4%;
+            margin-top: 6%;
+            margin-bottom: 6%;
+            border-color: white;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 5px 5px 5px 5px rgba(131, 131, 131, 0.2);
+            z-index: 0.1;
+            font-size: 16px;
+            overflow: hidden;
+
+
+        }
+
+        h3 {
+            text-align: center;
+            letter-spacing: 5px;
+        }
+
+        .description p {
+            padding: 30px;
+            text-align: justify;
+            text-indent: 20px;
+        }
+
+        .container {
+            position: relative;
+            float: right;
+            padding: 0;
+            margin: 0;
+            width: 45%;
+            height: 100vh;
+            z-index: 0;
+        }
+
+        .container img {
+            float: right;
+            /*max-width: 100%;*/
+            max-height: 100vh;
+        }
+
+        .divider {
+            float: left;
+            width: 100%;
+            background-color: rgb(31, 30, 32);
+        }
+
+        .divider h2 {
+            letter-spacing: 4px;
+            margin: 50px;
+            text-align: center;
+            color: rgb(255, 255, 255);
+        }
+
+        .characontainer {
+            background-color: none;
+            padding: 1%;
+            margin-top: 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .characterelements {
+            float: left;
+            align-items: center;
+            margin: 10px;
+            padding: 10px;
+            width: 250px;
+            background-color: rgb(255, 255, 255);
+            height: 80vh;
+            border-radius: 10px;
+            box-shadow: 5px 5px 5px 5px rgba(131, 131, 131, 0.2);
+        }
+
+        .characterelements p {
+            font-family: "Roboto";
+            font-size: 16px;
+            letter-spacing: 1px;
+            color: rgb(53, 50, 50);
+        }
+
+        .characterelements img {
+            width: 60%;
+        }
+
+        .characterelements b {
+            color: #db6161;
+        }
+
+        .characterelements h3 {
+            color: #65bbe2;
+        }
+
+        .projectcontainer {
+            padding: 5%;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .projectcontainer a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .credits {
+            padding: 30%;
+            justify-content: center;
+            text-align: center;
+            color: azure;
+            font: "Lato";
+        }
+
+        #projectrec {
+            width: 20%;
+        }
+
+        @media screen and (max-width: 800px) {
+            .parallax img {
+                object-fit: cover;
+            }
+
+            #chara {
+                padding-top: 15%;
+                /*padding: 2%;*/
+                height: auto;
+            }
+
+            #plot {
+                height: auto;
+                padding-top: 20%;
+            }
+
+            #project {
+                height: auto;
+            }
+
+            .projectcontainer {
+                margin-top: 20%;
+                font-size: 12px;
+            }
+
+            #logo {
+                background-size: 60%;
+                background-position: center;
+            }
+
+            .description {
+                z-index: 0.2;
+                justify-content: center;
+                width: 90%;
+                padding: auto;
+            }
+
+            .description p {
+                padding: auto;
+            }
+
+            .container {
+                display: none;
+            }
+
+            .divider h2 {
+                font-size: 16px;
+            }
+
+            .characontainer {
+                padding: 0;
+                justify-content: baseline;
+                display: block;
+            }
+
+            /*.characontainer {
+            background-color: none;
+            padding-top: 7%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }*/
+            .characterelements {
+                margin-top: 100px;
+                width: 90vw;
+                float: left;
+                margin: 2%;
+                padding: 2%;
+                height: auto;
+
+            }
+
+            /*.characterelements {
+            float: left;
+            align-items: center;
+            margin: 10px;
+            padding: 10px;
+            width: 20%;
+            background-color: rgb(255, 255, 255);
+            height: 70vh;
+            border-radius: 10px;
+            box-shadow: 5px 5px 5px 5px rgba(131, 131, 131, 0.2);
+        }*/
+            .characterelements p {
+                font-family: "Roboto";
+                font-size: 16px;
+                letter-spacing: 1px;
+                color: rgb(53, 50, 50);
+            }
+
+            .characterelements img {
+                width: 30%;
+            }
+
+            #projectrec {
+                width: 100%;
+                max-width: 250px;
+
+            }
+
+            .credits {
+                padding-top: 45vh;
+                height: 100vh;
+            }
+
+            .topnav a:not(:first-child) {
+                display: none;
+            }
+
+            .topnav a.icon {
+                width: 20px;
+                height: 20px;
+                background-image: url(https://i.imgur.com/x6MO7iX.png);
+                background-repeat: no-repeat;
+                background-color: white;
+                background-position: center;
+                float: right;
+                display: block;
+                justify-content: right;
+            }
+
+            .topnav.responsive {
+                font-size: 18px;
+                position: fixed;
+            }
+
+            .topnav.responsive a.icon {
+                position: absolute;
+                background-position: right;
+                float: right;
+                right: 0;
+                top: 0;
+            }
+
+            .topnav.responsive a {
+                width: 30%;
+                float: none;
+                display: block;
+                text-align: left;
+
+            }
+        }
+    </style>
+
+
+</head>
+
+<body>
+<section id="home" class="parallax">
+    <div class="topnav" id="myTopnav">
+        <a href="#home" class="iconsticky">HOME</a>
+        <a href="#plot" class="iconsticky">PLOT</a>
+        <a href="#chara" class="iconsticky">CHARACTERS</a>
+        <a href="#project" class="iconsticky">PROJECTS</a>
+        <a href="javascript:void(0);" class="icon" onclick="navFunction()"><i class="fa fa-bars"></i></a>
+    </div>
+
+    <div id="logo"></div>
+    <img id="frontcloud" src="https://i.imgur.com/tMAiPrV.png">
+    <img id="backcloud1" src="https://i.imgur.com/UbbzIyZ.png">
+    <img id="backcloud2" src="https://i.imgur.com/iIwwU9H.png">
+
+</section>
+<section id="plot">
+    <div class="description" data-aos="fade-right" data-aos-duration="500">
+
+        <h3>PLOT</h3>
+        <p>Kaiser woke up in a riverside of the nearby town after a storm destroyed his home. An eccentric young man
+            called Nic befriended him and offered him a place to stay. Kaiser tries his best to live his life by
+            being an errand boy in the town, but the whole place itself seems to attract the strangest people...</p>
+    </div>
+    <div class="container">
+        <img class="hoverobject" src="https://i.imgur.com/g92WlFa.png" data-value="-5">
+    </div>
+    </div>
+</section>
+<div class="divider">
+    <h2>"I WANT TO FIND MY PLACE IN THIS WORLD"</h2>
+</div>
+<section id="chara">
+    <div class="characontainer">
+        <div class="characterelements" data-aos="fade-up" data-aos-duration="500" data-aos-delay="100">
+            <img src="https://i.imgur.com/W5SDQE5.png">
+            <h3>KAISER<h3>
+                    <p><b>Full Name:</b> Caesar 'Kaiser' Takas</p>
+                    <p><b>Species:</b> Demon</p>
+                    <p><b>Occupation</b> Freelance, Fix-It Guy</p>
+                    <p>A demon who lost his home. He is trying to live his life with his friends and solve people's
+                        problems.</p>
+        </div>
+        <div class="characterelements" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400">
+            <img src="https://i.imgur.com/nxiYIpE.png">
+            <h3>KOMEN<h3>
+                    <p><b>Full Name:</b> Komen Al</p>
+                    <p><b>Species:</b> Humanoid Tapeworm</p>
+                    <p><b>Occupation</b> Bystander</p>
+                    <p>A carefree tapeworm who does nothing but seek pleasure in life. A lot of people find him
+                        irritating.</p>
+        </div>
+        <div class="characterelements" data-aos="fade-up" data-aos-duration="500" data-aos-delay="700">
+            <img src="https://i.imgur.com/wyhZiU4.png">
+            <h3>NIC<h3>
+                    <p><b>Full Name:</b> Nikolai 'Nic' Hamil</p>
+                    <p><b>Species:</b> Human</p>
+                    <p><b>Occupation</b> Chemist, Arsonist</p>
+                    <p>A man in his early 20s who has a unique perspective about the world. He sees beauty in
+                        everything.</p>
+        </div>
+        <div class="characterelements" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1000">
+            <img src="https://i.imgur.com/tcvwI9Q.png">
+            <h3>RAY<h3>
+                    <p><b>Full Name:</b> Raymond Mitchell</p>
+                    <p><b>Species:</b> Angel</p>
+                    <p><b>Occupation</b> Guardian Angel</p>
+                    <p>A former War Angel tasked to watch over the human, Nic. Tends to spoil Nic a lot and does
+                        everything to protect him.</p>
+        </div>
+    </div>
+
+</section>
+<div class="divider">
+    <h2>"All I have to do is to see the positives in life?"</h2>
+</div>
+<section id="project">
+    <div class="projectcontainer" data-aos="flip-up" data-aos-duration="500">
+        <h3>Projects</h3>
+        <p>Other works involve in the series. So far, there is only one(1) work created...</p>
+        <p><a href="https://peridon.itch.io/a-friends-web"><img
+                    src="https://img.itch.zone/aW1nLzEwMDYwNzMyLnBuZw==/315x250%23c/lchZsS.png" id="projectrec">
+                <p style="text-decoration: none;">A Friend's Web</p>
+            </a></p>
+    </div>
+</section>
+<section id="credits">
+    <div class="credits">
+        <h3>Submitted by Sophia Marie M. Dalpatan</h3>
+    </div>
+</section>
+<script>
+    let logo = document.getElementById('logo');
+    let backclouda = document.getElementById('backcloud1');
+    let backcloudb = document.getElementById('backcloud2');
+    let credits = document.getElementsByClassName('credits');
+
+    window.addEventListener('scroll', function () {
+        let value = window.scrollY;
+        backclouda.style.left = value * -1.5 + 'px';
+        backcloudb.style.left = value * 1.5 + 'px';
+        logo.style.opacity = 1 - (value / 213);
+        /*credits.style.opacity = 1 - (value / 213);*/
+        /*logo.innerHTML = value;*/
+        if (value >= 50) {
+            document.getElementById("myTopnav").style.boxShadow = "5px 5px 5px #80808075";
+        } else {
+            document.getElementById("myTopnav").style.boxShadow = "none";
+        }
+    });
+
+
+    document.addEventListener("mousemove", parallax);
+    function parallax(e) {
+        document.querySelectorAll(".hoverobject").forEach(function (move) {
+            var moving_value = move.getAttribute("data-value");
+            var x = (e.clientX * moving_value) / 250;
+            var y = (e.clientY * moving_value) / 250;
+            move.style.transform = "translateX(" + x + "px) translateY(" + y + "px)";
+        });
+    }
+    function navFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 3000,
+        once: true,
+    });
+</script>
+</body>
+
+
+</html>
